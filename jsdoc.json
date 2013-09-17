@@ -1,0 +1,9 @@
+{
+	"encoding": "utf8",
+	"destination": "./docs/",
+    "source": {
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+	"plugins": ["plugins/markdown"]
+}
