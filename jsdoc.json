@@ -1,0 +1,35 @@
+{
+	"source": {
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+
+	"encoding": "utf8",
+
+	"tags"      : {
+		"allowUnknownTags" : true
+	},
+
+	"templates" : {
+		"cleverLinks"     : false,
+		"monospaceLinks"  : false,
+		"default"         : {
+			"outputSourceFiles" : true
+		},
+		"systemName"      : "Readability Node Wrapper",
+		"footer"          : "",
+		"copyright"       : "Copyright (c) 2013 Shamasis Bhattacharya <http://www.shamasis.net/>",
+		"navType"         : "vertical",
+		"theme"           : "cerulean",
+		"linenums"        : true,
+		"collapseSymbols" : false,
+		"inverseNav"      : true
+	},
+
+	"plugins"   : ["plugins/markdown"],
+	"markdown"  : {
+		"parser"   : "gfm",
+		"hardwrap" : true
+	}
+}
+

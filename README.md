@@ -1,4 +1,7 @@
-magfy <sup>pre-dev</sup>
-========================
+readability <sup>beta</sup>
+===========================
 
-Experimental approach to create a node.js server that pulls in articles from web and compiles it as a magazine
+Node abstraction layer around readability.com article parsing and reader web API services.
+Documentation: http://readability.shamasis.net/Parser.html
+
+*This library is still being brewed for maturity.*
