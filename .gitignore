@@ -3,3 +3,6 @@
 
 # Prevent jsDocs generated from makedoc being committed
 /docs/
+
+# Prevent Sublime Text project and editor files from being committed
+*.sublime-*
