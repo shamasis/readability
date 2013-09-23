@@ -1,1 +1,5 @@
+# Ignore OSX Spotlight artefacts
 .DS_Store
+
+# Prevent jsDocs generated from makedoc being committed
+/docs/
