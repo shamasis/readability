@@ -1,9 +1,35 @@
 {
-	"encoding": "utf8",
-	"destination": "./docs/",
-    "source": {
+	"source": {
         "includePattern": ".+\\.js(doc)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
-	"plugins": ["plugins/markdown"]
+
+	"encoding": "utf8",
+
+	"tags"      : {
+		"allowUnknownTags" : true
+	},
+
+	"templates" : {
+		"cleverLinks"     : false,
+		"monospaceLinks"  : false,
+		"default"         : {
+			"outputSourceFiles" : true
+		},
+		"systemName"      : "DocStrap",
+		"footer"          : "",
+		"copyright"       : "DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.",
+		"navType"         : "vertical",
+		"theme"           : "cerulean",
+		"linenums"        : true,
+		"collapseSymbols" : false,
+		"inverseNav"      : true
+	},
+
+	"plugins"   : ["plugins/markdown"],
+	"markdown"  : {
+		"parser"   : "gfm",
+		"hardwrap" : true
+	}
 }
+

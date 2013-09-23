@@ -15,34 +15,33 @@
         querystring = require('querystring'),
         events = require('events');
 
-    var Readability;
+    var ReadabilityParser;
 
     /**
-     * Readability article parsing and bokmarking web API wrapper. This eases the pain
-     * of performing common tasks while working with the API of readability.com. For
-     * more information on reability API visit their website
-     * [http://www.readability.com/developers/api]
-     * (http://www.readability.com/developers/api).
+     * **Readability article parsing and bokmarking web API wrapper.**
      *
-     * As per readability.com website, *"the Parser API is freely available on a limited basis.
-     * If you'd like to use the Parser API for commercial use, get in touch with us at
-     * [licensing@readability.com](mailto:licensing@readability.com) to learn about our licensing
-     * options."*
+     * This library eases the pain of performing common tasks while working with the API of readability.com. For more
+     * information on reability API visit their website http://www.readability.com/developers/api.
+     *
+     * As per readability.com website, *"the Parser API is freely available on a limited basis. If you'd like to use
+     * the Parser API for commercial use, get in touch with us at licensing@readability.com to learn about our
+     * licensing options."*
      *
      * @global
      * @constructor
      * @param {object=} [options] - Configuration for a new instance of the readability.
+     * The possible options that you can pass are part of {@link ReadabilityParser.defaultOptions}.
      *
      * @example
      * // Use Readability to procure the excerpt of an article.
-     * var rdblty = new Readability({
+     * var rdblty = new ReadabilityParser({
      *     parserAPIKey: "myapikeyfromreadability.com"
      * });
      * rdblty.parse('http://somedomain.com/somearticle/', function (data) {
      *     console.log(data.excerpt);
      * });
      */
-    Readability = function (options) {
+    ReadabilityParser = function (options) {
         options = options || {};
 
         var parserAPIKey = E;
@@ -59,20 +58,38 @@
         };
     };
     // Make Readability function inherit from EventEmitter.
-    util.inherits(Readability, events.EventEmitter);
+    util.inherits(ReadabilityParser, events.EventEmitter);
+
+    /**
+     * Default set of options that are used while communicating with Readability
+     * API servers. These are the set of options that can be passed on to a new
+     * instance of `Readability` in order to override the defaults.
+     * @enum
+     * @memberOf ReadabilityParser
+     */
+    ReadabilityParser.defaultOptions = {
+        /**
+         * Provide the API key required by readability.com servers for using the API. Though this is optional during
+         * instantiating a {@link ReadabilityParser} class, it is a required parameter to be set before actually making
+         * any request to the readability servers. If not provided initially, it can be later set using
+         * {@link ReadabilityParser#parserkey} method.
+         * @type {string}
+        */
+        parserAPIKey: ""
+    };
 
     /**
      * Returns a fully formed API access URL to Readability server.
      * @static
      * @private
-     * @memberOf Readability
+     * @memberOf ReadabilityParser
      * @param {string} key - The parser API key to be used to pass
      * on to Readability servers.
      * @param {string} articleUrl - Url of the article that is required
      * to be parsed.
      * @returns {string} Readability API Url ready to be requested.
      */
-    Readability.getParserUrl = function (key, articleUrl) {
+    ReadabilityParser.getParserUrl = function (key, articleUrl) {
         return "https://" + READABILITY_URL + READABILITY_PARSER_PATH + "?" + querystring.stringify({
             token: key,
             url: articleUrl
@@ -82,14 +99,14 @@
     /**
      * Accepts a URL and parses it for its article mode by sending it to Readability.
      * servers.
-     * @memberOf Readability
+     * @memberOf ReadabilityParser
      * @param {string} url - The URL of the article that needs to be parsed.
      * @param {function=} [success] - Callback function that will be executed upon successful parsing.
      * @fires #parse
      */
-    Readability.prototype.parse = function (url, success) {
+    ReadabilityParser.prototype.parse = function (url, success) {
         var proxy = this;
-        request(Readability.getParserUrl(proxy.parserkey(), url), function(error, response, body) {
+        request(ReadabilityParser.getParserUrl(proxy.parserkey(), url), function(error, response, body) {
             var data;
             if (!error && response.statusCode === 200) {
                 // Try and convery json string from body to a JS object and on failure
@@ -106,7 +123,7 @@
                  * Readability article parse event. This event is fired every time
                  * an article has been parsed.
                  *
-                 * @event Readability#parse
+                 * @event ReadabilityParser#parse
                  * @param {object} [data] - Article parse result in JSON format.
                  */
                 proxy.emit("parse", data);
@@ -119,9 +136,7 @@
 
 
     module && (module.exports = {
-        new: function(options) {
-            return new Readability(options);
-        }
+        Parser: ReadabilityParser
     });
 
 }());
