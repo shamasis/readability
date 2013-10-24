@@ -24,8 +24,6 @@
     "request":  "2.27.1"
   },
   "devDependencies": {
-    "closure-compiler": "*",
-    "jsdoc3":"git://github.com/jsdoc3/jsdoc.git"
   },
   "bundledDependencies": [],
   "license": "MIT",
