@@ -21,12 +21,13 @@
     "readability.com"
   ],
   "dependencies": {
-    "request":  "*"
+    "request":  "2.27.1"
   },
   "devDependencies": {
     "closure-compiler": "*",
-    "jsdoc3":"https://github.com/jsdoc3/jsdoc.git"
+    "jsdoc3":"git://github.com/jsdoc3/jsdoc.git"
   },
+  "bundledDependencies": [],
   "license": "MIT",
   "engines": {
     "node": ">=0.10.9"
