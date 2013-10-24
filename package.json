@@ -24,8 +24,8 @@
     "request":  "*"
   },
   "devDependencies": {
-    "jsdocs":  "*",
-    "closurecompiler": "*"
+    "closure-compiler": "*",
+    "jsdoc3":"https://github.com/jsdoc3/jsdoc.git"
   },
   "license": "MIT",
   "engines": {
