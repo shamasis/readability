@@ -21,7 +21,7 @@
     "readability.com"
   ],
   "dependencies": {
-    "request":  "*"
+    "request":  ">=2.86.0"
   },
   "devDependencies": {
   },
